@@ -13,4 +13,9 @@ class RouterEndpoints {
     name: 'home',
     path: '/',
   );
+
+  static const explore = AppRouterEndpoint(
+    name: 'explore',
+    path: '/explore',
+  );
 }
