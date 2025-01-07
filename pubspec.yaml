@@ -42,6 +42,8 @@ dependencies:
   cached_network_image: ^3.4.1
   shimmer: ^3.0.0
   shared_preferences: ^2.3.5
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +56,9 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
   very_good_analysis: ^7.0.0
+  build_runner: ^2.4.14
+  freezed: ^2.5.8
+  json_serializable: ^6.9.2
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/config/constants/constants.dart';
-import '../../widgets/cards/news_card.dart';
+import '../../../domain/models/category_model/category_model.dart';
+import '../../../domain/models/news_model/news_model.dart';
+import '../../widgets/list_views/news_list_view.dart';
 import 'widgets/home_page_app_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,72 +19,32 @@ class HomePage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(
-              height: 385,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(
-                  vertical: Paddings.small,
-                  horizontal: Paddings.xLarge,
+            NewsListView(
+              news: [
+                NewsModel(
+                  title:
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  imageUrl: 'https://picsum.photos/200/300',
+                  publishedAt: DateTime.now(),
+                  category: CategoryModel(name: 'Technology'),
                 ),
-                itemBuilder: (context, index) {
-                  return NewsCard(
-                    key: ValueKey(index),
-                    subtitle: 'Technology',
-                    title:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return Gaps.medium;
-                },
-                itemCount: 3,
-              ),
+                NewsModel(
+                  title:
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  imageUrl: 'https://picsum.photos/200/301',
+                  publishedAt: DateTime.now(),
+                  category: CategoryModel(name: 'Technology'),
+                ),
+                NewsModel(
+                  title:
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  imageUrl: 'https://picsum.photos/200/302',
+                  publishedAt: DateTime.now(),
+                  category: CategoryModel(name: 'Technology'),
+                ),
+              ],
             ),
             Gaps.medium,
-            SizedBox(
-              height: 200,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(
-                  vertical: Paddings.small,
-                  horizontal: Paddings.xLarge,
-                ),
-                itemBuilder: (context, index) {
-                  return NewsCard.large(
-                    title:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                    key: ValueKey((index + 1) * 2),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return Gaps.medium;
-                },
-                itemCount: 3,
-              ),
-            ),
-            Gaps.medium,
-            SizedBox(
-              height: 200,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(
-                  vertical: Paddings.small,
-                  horizontal: Paddings.xLarge,
-                ),
-                itemBuilder: (context, index) {
-                  return NewsCard.small(
-                    title:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                    key: ValueKey((index + 1) * 3),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return Gaps.medium;
-                },
-                itemCount: 3,
-              ),
-            ),
             const SafeArea(child: SizedBox()),
           ],
         ),

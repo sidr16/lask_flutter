@@ -8,42 +8,48 @@ import '../shimmer/primary_shimmer.dart';
 enum NewsCardType {
   large,
   small,
-  medium,
+  primary,
 }
 
 class NewsCard extends StatefulWidget {
   const NewsCard({
     required this.title,
-    this.type = NewsCardType.medium,
+    required this.imageUrl,
+    this.type = NewsCardType.primary,
     this.subtitle,
     super.key,
   });
 
   factory NewsCard.large({
     required String title,
+    required String imageUrl,
     Key? key,
   }) {
     return NewsCard(
       key: key,
-      type: NewsCardType.large,
       title: title,
+      imageUrl: imageUrl,
+      type: NewsCardType.large,
     );
   }
 
   factory NewsCard.small({
     required String title,
+    required String imageUrl,
     Key? key,
   }) {
     return NewsCard(
       key: key,
-      type: NewsCardType.small,
       title: title,
+      imageUrl: imageUrl,
+      type: NewsCardType.small,
     );
   }
 
   final String title;
   final String? subtitle;
   final NewsCardType type;
+  final String imageUrl;
 
   @override
   State<NewsCard> createState() => _NewsCardState();
@@ -54,7 +60,7 @@ class _NewsCardState extends State<NewsCard> {
   Widget build(BuildContext context) {
     return switch (widget.type) {
       NewsCardType.large => _buildLarge(),
-      NewsCardType.medium => _buildMedium(),
+      NewsCardType.primary => _buildPrimary(),
       NewsCardType.small => _buildSmall(),
     };
   }
@@ -72,7 +78,7 @@ class _NewsCardState extends State<NewsCard> {
     );
   }
 
-  Widget _buildMedium() {
+  Widget _buildPrimary() {
     return SizedBox(
       width: 270,
       child: Column(
@@ -134,7 +140,7 @@ class _NewsCardState extends State<NewsCard> {
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
-          imageUrl: 'https://picsum.photos/200/300#${widget.key}',
+          imageUrl: widget.imageUrl,
           placeholder: (context, url) => const PrimaryShimmer(),
         ),
       ),
