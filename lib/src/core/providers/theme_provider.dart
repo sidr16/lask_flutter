@@ -3,36 +3,47 @@ import 'package:flutter/material.dart';
 import '../config/constants/constants.dart';
 import '../locators/service_locator.dart';
 
-/// Provider that manages the app's theme mode (light/dark/system)
+/// Manages app theme mode (light/dark/system)
 class ThemeModeProvider extends ChangeNotifier {
   /// Current theme mode
   ThemeMode _themeMode = ThemeMode.system;
 
-  /// Get the current theme mode
+  /// Get current theme mode
   ThemeMode get themeMode => _themeMode;
 
-  /// Whether dark mode is currently active
+  /// Is dark mode active
   bool get isDarkMode => _themeMode == ThemeMode.dark;
 
-  /// Initialize theme mode from shared preferences
+  /// Init flag
+  bool _isInitialized = false;
+
+  /// Load theme from prefs
   void initialize() {
+    if (_isInitialized) return;
+
     final currentThemeMode =
         getIt.sharedPreferences.getString(SharedPrefsKeys.themeMode);
 
     setThemeMode(
       getThemeModeByName(currentThemeMode ?? ThemeMode.system.name),
     );
+
+    _isInitialized = true;
   }
 
-  /// Toggle between light and dark mode
+  /// Cycle through themes: light -> dark -> system
   void toggle() {
-    final changeThemeMode =
-        _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    final currentMode = _themeMode;
+    final changeThemeMode = switch (currentMode) {
+      ThemeMode.light => ThemeMode.dark,
+      ThemeMode.dark => ThemeMode.system,
+      ThemeMode.system => ThemeMode.light,
+    };
 
     setThemeMode(changeThemeMode);
   }
 
-  /// Set a new theme mode and persist it to shared preferences
+  /// Update and save theme mode
   void setThemeMode(ThemeMode themeMode) {
     _themeMode = themeMode;
 
@@ -44,10 +55,11 @@ class ThemeModeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Get a ThemeMode enum value from its string name
+  /// Get ThemeMode from string name
   ThemeMode getThemeModeByName(String themeModeName) {
     return ThemeMode.values.firstWhere(
       (themeMode) => themeMode.name == themeModeName,
+      orElse: () => ThemeMode.system,
     );
   }
 }
