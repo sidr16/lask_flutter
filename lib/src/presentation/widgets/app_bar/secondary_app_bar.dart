@@ -27,6 +27,7 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
       leadingWidth: leadingWidth,
       backgroundColor: context.colors.brandBlue10,
       centerTitle: false,
+      actions: actions,
     );
   }
 

@@ -38,30 +38,33 @@ class AppNavigationBar extends StatelessWidget {
       ),
       child: BackdropFilter(
         filter: ImageFilter.blur(
-          sigmaX: 10,
-          sigmaY: 10,
+          sigmaX: 5,
+          sigmaY: 5,
         ),
-        child: BottomNavigationBar(
-          onTap: onTap,
-          elevation: 0,
-          showSelectedLabels: false,
-          currentIndex: currentIndex,
-          showUnselectedLabels: false,
-          items: List.generate(
-            items.length,
-            (index) {
-              final item = items[index];
+        child: ColoredBox(
+          color: context.colors.grey1.withValues(alpha: 0.8),
+          child: BottomNavigationBar(
+            onTap: onTap,
+            elevation: 0,
+            showSelectedLabels: false,
+            currentIndex: currentIndex,
+            showUnselectedLabels: false,
+            items: List.generate(
+              items.length,
+              (index) {
+                final item = items[index];
 
-              return BottomNavigationBarItem(
-                backgroundColor: context.colors.navBarBackground,
-                icon: AppNavigationBarButton(
-                  isActive: index == currentIndex,
-                  name: item.name,
-                  icon: item.icon,
-                ),
-                label: item.name,
-              );
-            },
+                return BottomNavigationBarItem(
+                  backgroundColor: Colors.transparent,
+                  icon: AppNavigationBarButton(
+                    isActive: index == currentIndex,
+                    name: item.name,
+                    icon: item.icon,
+                  ),
+                  label: item.name,
+                );
+              },
+            ),
           ),
         ),
       ),

@@ -6,9 +6,13 @@ import 'src/core/config/theme/app_theme.dart';
 import 'src/core/locators/service_locator.dart';
 import 'src/core/providers/theme_provider.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ServiceLocator.register();
+
+  await ServiceLocator.register();
+
+  getIt.themeModeProvider.initialize();
+
   runApp(const MyApp());
 }
 

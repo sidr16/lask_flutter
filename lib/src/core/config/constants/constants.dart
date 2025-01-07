@@ -19,3 +19,7 @@ class Gaps {
   static const medium = Gap(16);
   static const large = Gap(24);
 }
+
+class SharedPrefsKeys {
+  static const themeMode = 'themeMode';
+}

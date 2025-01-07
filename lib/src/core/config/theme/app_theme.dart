@@ -7,6 +7,10 @@ class AppTheme {
   static ThemeData dark = ThemeData.dark().copyWith(
     scaffoldBackgroundColor: AppColors.dark.backgroundPrimary,
     primaryColor: AppColors.dark.textPrimary,
+    appBarTheme: const AppBarTheme(
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+    ),
     extensions: [
       AppColors.dark,
       AppTextStyles.dark,
@@ -16,6 +20,10 @@ class AppTheme {
   static ThemeData light = ThemeData.light().copyWith(
     scaffoldBackgroundColor: AppColors.light.backgroundPrimary,
     primaryColor: AppColors.light.textPrimary,
+    appBarTheme: const AppBarTheme(
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+    ),
     extensions: [
       AppColors.light,
       AppTextStyles.light,
