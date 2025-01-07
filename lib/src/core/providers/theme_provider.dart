@@ -31,13 +31,20 @@ class ThemeModeProvider extends ChangeNotifier {
     _isInitialized = true;
   }
 
-  /// Cycle through themes: light -> dark -> system
+  /// Get current platform brightness (light/dark)
+  Brightness get platformBrightness =>
+      WidgetsBinding.instance.platformDispatcher.platformBrightness;
+
+  /// Toggle between light and dark themes
+  /// Light -> Dark -> Light if in system mode
   void toggle() {
     final currentMode = _themeMode;
     final changeThemeMode = switch (currentMode) {
       ThemeMode.light => ThemeMode.dark,
-      ThemeMode.dark => ThemeMode.system,
-      ThemeMode.system => ThemeMode.light,
+      ThemeMode.dark => ThemeMode.light,
+      ThemeMode.system => platformBrightness == Brightness.dark
+          ? ThemeMode.light
+          : ThemeMode.dark,
     };
 
     setThemeMode(changeThemeMode);
