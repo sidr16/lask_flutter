@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import '../../../core/config/constants/constants.dart';
 import '../../../core/config/theme/app_theme.dart';
@@ -67,12 +68,19 @@ class _NewsCardState extends State<NewsCard> {
 
   Widget _buildLarge() {
     return SizedBox(
-      width: 270,
       child: Column(
         children: [
-          Expanded(
+          SizedBox(
+            height: 200,
             child: _buildImage(),
           ),
+          Gaps.medium,
+          Text(
+            widget.title,
+            style: context.textStyles.heading4,
+          ),
+          Gaps.small,
+          _buildAuthorDetails(),
         ],
       ),
     );
@@ -88,7 +96,7 @@ class _NewsCardState extends State<NewsCard> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: Paddings.small,
+              horizontal: Paddings.xSmall,
               vertical: Paddings.medium,
             ),
             child: Column(
@@ -119,14 +127,61 @@ class _NewsCardState extends State<NewsCard> {
 
   Widget _buildSmall() {
     return SizedBox(
-      width: 270,
-      child: Column(
+      child: Row(
         children: [
           Expanded(
+            child: Column(
+              children: [
+                Text(
+                  widget.title,
+                  style: context.textStyles.heading5,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const Gap(4),
+                _buildAuthorDetails(),
+              ],
+            ),
+          ),
+          Gaps.medium,
+          SizedBox(
+            width: 110,
+            height: 80,
             child: _buildImage(),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildAuthorDetails() {
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: 12,
+          backgroundColor: context.colors.brandBlue10,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: CachedNetworkImage(
+              imageUrl: 'https://picsum.photos/200/300',
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+          ),
+        ),
+        Gaps.small,
+        Text.rich(
+          style: context.textStyles.footnoteRegular,
+          const TextSpan(
+            children: [
+              TextSpan(text: 'Melissa White'),
+              TextSpan(text: ' • '),
+              TextSpan(text: 'May 7, 2023'),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

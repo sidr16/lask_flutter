@@ -30,7 +30,7 @@ class AppNavigationBarButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(BorderRadiuses.full),
       ),
       padding: const EdgeInsets.symmetric(
-        vertical: Paddings.small,
+        vertical: Paddings.xSmall,
         horizontal: Paddings.medium,
       ),
       child: Row(

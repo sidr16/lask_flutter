@@ -85,7 +85,9 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static final AppTextStyles light = AppTextStyles(
     heading5: AppTypography.heading5,
     heading4: AppTypography.heading4,
-    heading3: AppTypography.heading3,
+    heading3: AppTypography.heading3.copyWith(
+      color: AppColors.light.textPrimary,
+    ),
     heading2: AppTypography.heading2,
     body1Regular: AppTypography.body1Regular,
     body2Regular: AppTypography.body2Regular.copyWith(

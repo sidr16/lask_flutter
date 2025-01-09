@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../presentation/pages/explore_page/explore_page.dart';
 import '../../../presentation/pages/home_page/home_page.dart';
 import '../../../presentation/pages/navigation_page/navigation_page.dart';
 import 'app_router_endpoints.dart';
@@ -36,7 +37,7 @@ class AppRouter {
             GoRoute(
               path: RouterEndpoints.explore.path,
               name: RouterEndpoints.explore.name,
-              builder: (context, state) => const HomePage(),
+              builder: (context, state) => const ExplorePage(),
             ),
           ],
         ),

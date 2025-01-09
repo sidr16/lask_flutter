@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/config/constants/constants.dart';
 import '../../../core/config/theme/app_theme.dart';
 
 class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -9,6 +10,7 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions = const [],
     this.leadingWidth,
     this.toolbarHeight,
+    this.customPreferredSize,
     super.key,
   });
 
@@ -17,20 +19,24 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> actions;
   final double? leadingWidth;
   final double? toolbarHeight;
+  final Size? customPreferredSize;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: title != null ? Text(title!) : null,
       leading: leading,
-      toolbarHeight: toolbarHeight,
-      leadingWidth: leadingWidth,
-      backgroundColor: context.colors.brandBlue10,
-      centerTitle: false,
       actions: actions,
+      centerTitle: false,
+      leadingWidth: leadingWidth,
+      toolbarHeight: toolbarHeight,
+      titleSpacing: Paddings.xLarge,
+      backgroundColor: context.colors.brandBlue10,
+      titleTextStyle: context.textStyles.heading3,
+      title: title != null ? Text(title!) : null,
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize =>
+      customPreferredSize ?? const Size.fromHeight(kToolbarHeight);
 }
