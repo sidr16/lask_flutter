@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/bloc/theme_mode_bloc/theme_mode_bloc.dart';
 import '../../../../core/config/constants/constants.dart';
 import '../../../../core/config/theme/app_theme.dart';
-import '../../../../core/providers/theme_provider.dart';
 import '../../../widgets/app_bar/secondary_app_bar.dart';
 
 class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -11,7 +11,7 @@ class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeModeProvider = context.watch<ThemeModeProvider>();
+    final themeModeProvider = context.read<ThemeModeBloc>();
 
     return SecondaryAppBar(
       leadingWidth: 230,
@@ -39,7 +39,9 @@ class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           onPressed: themeModeProvider.toggle,
           icon: Icon(
-            themeModeProvider.isDarkMode ? Icons.dark_mode : Icons.light_mode,
+            themeModeProvider.state.isDarkMode
+                ? Icons.dark_mode
+                : Icons.light_mode,
             color: Colors.amber,
           ),
         ),

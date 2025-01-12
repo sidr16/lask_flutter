@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'src/core/bloc/theme_mode_bloc/theme_mode_bloc.dart';
+import 'src/core/bloc/theme_mode_bloc/theme_mode_state.dart';
 import 'src/core/config/router/app_router.dart';
 import 'src/core/config/theme/app_theme.dart';
 import 'src/core/locators/service_locator.dart';
-import 'src/core/providers/theme_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await ServiceLocator.register();
+  await ServiceLocator.registerAsync();
+  ServiceLocator.registerSync();
 
-  getIt.themeModeProvider.initialize();
-
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt.get<ThemeModeBloc>(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,15 +30,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => getIt.get<ThemeModeProvider>(),
-      builder: (context, child) {
+    return BlocBuilder<ThemeModeBloc, ThemeModeState>(
+      builder: (BuildContext context, ThemeModeState state) {
         return MaterialApp.router(
           title: 'Lask',
           theme: AppTheme.light,
           darkTheme: AppTheme.dark,
           routerConfig: getIt.get<AppRouter>().router,
-          themeMode: context.watch<ThemeModeProvider>().themeMode,
+          themeMode: state.themeMode,
         );
       },
     );

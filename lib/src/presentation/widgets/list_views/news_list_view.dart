@@ -7,6 +7,7 @@ import '../cards/news_card.dart';
 class NewsListView extends StatelessWidget {
   const NewsListView({
     required this.news,
+    this.onItemBuildIndex,
     this.padding = const EdgeInsets.symmetric(
       vertical: Paddings.xSmall,
       horizontal: Paddings.xLarge,
@@ -36,6 +37,7 @@ class NewsListView extends StatelessWidget {
   final List<NewsModel> news;
   final NewsCardType cardType;
   final EdgeInsetsGeometry? padding;
+  final void Function(int index)? onItemBuildIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,8 @@ class NewsListView extends StatelessWidget {
         padding: padding ?? EdgeInsets.zero,
         sliver: SliverList.separated(
           itemBuilder: (context, index) {
+            onItemBuildIndex?.call(index);
+
             return NewsCard(
               type: isFirstLarge && index == 0 ? NewsCardType.large : cardType,
               title: news[index].title,
@@ -65,6 +69,8 @@ class NewsListView extends StatelessWidget {
         scrollDirection: scrollDirection,
         padding: padding,
         itemBuilder: (context, index) {
+          onItemBuildIndex?.call(index);
+
           return NewsCard(
             type: isFirstLarge && index == 0 ? NewsCardType.large : cardType,
             title: news[index].title,

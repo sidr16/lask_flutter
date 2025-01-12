@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/config/constants/constants.dart';
-import '../../../data/mock/news_mock_data.dart';
 import '../../widgets/list_views/news_list_view.dart';
 import 'widgets/home_page_app_bar.dart';
 
@@ -19,7 +18,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             NewsListView.horizontal(
-              news: NewsMockData.getNews(),
+              news: const [],
             ),
             Gaps.medium,
             const SafeArea(child: SizedBox()),
