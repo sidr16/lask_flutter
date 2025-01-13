@@ -1,4 +1,4 @@
-import '../../../core/pagination/pagination_bloc.dart';
+import '../../../core/bloc/pagination_bloc/pagination_bloc.dart';
 import '../../../domain/models/news_model/news_model.dart';
 import '../../../domain/repositories/news_repository.dart';
 

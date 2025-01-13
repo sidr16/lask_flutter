@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/models/result_model/result_model.dart';
+import '../../../domain/models/result_model/result_model.dart';
 import 'pagination_events.dart';
 import 'pagination_state.dart';
 

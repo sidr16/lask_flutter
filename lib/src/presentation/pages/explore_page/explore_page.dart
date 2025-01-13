@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
+import '../../../core/bloc/pagination_bloc/pagination_extension.dart';
+import '../../../core/bloc/pagination_bloc/pagination_state.dart';
 import '../../../core/config/constants/constants.dart';
 import '../../../core/config/theme/app_theme.dart';
 import '../../../core/locators/service_locator.dart';
-import '../../../core/pagination/pagination_extension.dart';
-import '../../../core/pagination/pagination_state.dart';
 import '../../../domain/models/news_model/news_model.dart';
 import '../../bloc/news_bloc/news_bloc.dart';
 import '../../widgets/app_bar/secondary_app_bar.dart';
