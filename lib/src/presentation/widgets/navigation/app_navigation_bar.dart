@@ -1,10 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import '../../../core/config/assets/svg_icons.dart';
 import '../../../core/config/constants/constants.dart';
-import '../../../core/config/theme/app_theme.dart';
+import '../wrappers/blur_wrapper.dart';
 import 'app_navigation_bar_button.dart';
 
 class AppNavigationBarItem {
@@ -36,35 +34,28 @@ class AppNavigationBar extends StatelessWidget {
         topLeft: Radius.circular(BorderRadiuses.large),
         topRight: Radius.circular(BorderRadiuses.large),
       ),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: 5,
-          sigmaY: 5,
-        ),
-        child: ColoredBox(
-          color: context.colors.grey1.withValues(alpha: 0.8),
-          child: BottomNavigationBar(
-            onTap: onTap,
-            elevation: 0,
-            showSelectedLabels: false,
-            currentIndex: currentIndex,
-            showUnselectedLabels: false,
-            items: List.generate(
-              items.length,
-              (index) {
-                final item = items[index];
+      child: BlurWrapper(
+        child: BottomNavigationBar(
+          onTap: onTap,
+          elevation: 0,
+          showSelectedLabels: false,
+          currentIndex: currentIndex,
+          showUnselectedLabels: false,
+          items: List.generate(
+            items.length,
+            (index) {
+              final item = items[index];
 
-                return BottomNavigationBarItem(
-                  backgroundColor: Colors.transparent,
-                  icon: AppNavigationBarButton(
-                    isActive: index == currentIndex,
-                    name: item.name,
-                    icon: item.icon,
-                  ),
-                  label: item.name,
-                );
-              },
-            ),
+              return BottomNavigationBarItem(
+                backgroundColor: Colors.transparent,
+                icon: AppNavigationBarButton(
+                  isActive: index == currentIndex,
+                  name: item.name,
+                  icon: item.icon,
+                ),
+                label: item.name,
+              );
+            },
           ),
         ),
       ),
