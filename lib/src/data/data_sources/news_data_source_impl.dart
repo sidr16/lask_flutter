@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:faker/faker.dart';
 
+import '../../core/utils/exception/exception_handler.dart';
 import '../../domain/models/category_model/category_model.dart';
 import '../../domain/models/news_model/news_model.dart';
 import '../../domain/models/result_model/result_model.dart';
@@ -15,42 +16,49 @@ class NewsDataSourceImpl implements NewsDataSource {
 
   @override
   Future<ResultModel<NewsModel>> fetchNews(int page, int pageSize) async {
-    await Future.delayed(const Duration(milliseconds: 500), () {});
+    try {
+      await Future.delayed(const Duration(milliseconds: 500), () {});
 
-    final startIndex = page * pageSize;
-    final endIndex = min(startIndex + pageSize, totalNewsItems);
+      final startIndex = page * pageSize;
+      final endIndex = min(startIndex + pageSize, totalNewsItems);
 
-    if (startIndex >= totalNewsItems) {
+      if (startIndex >= totalNewsItems) {
+        return ResultModel<NewsModel>(
+          data: [],
+          count: totalNewsItems,
+        );
+      }
+
+      final faker = Faker();
+      final newsItems = List<NewsModel>.generate(
+        endIndex - startIndex,
+        (index) {
+          final randomCategory = faker.randomGenerator.element([
+            'Technology',
+            'Health',
+            'Sports',
+            'Business',
+            'Entertainment',
+          ]);
+
+          return NewsModel(
+            title: faker.lorem.sentence(),
+            imageUrl: faker.image.loremPicsum(),
+            publishedAt: faker.date.dateTime(),
+            category: CategoryModel(name: randomCategory),
+          );
+        },
+      );
+
       return ResultModel<NewsModel>(
-        data: [],
+        data: newsItems,
         count: totalNewsItems,
       );
+    } catch (error, stackTrace) {
+      throw ExceptionHandler.handle(
+        error,
+        stackTrace: stackTrace,
+      );
     }
-
-    final faker = Faker();
-    final newsItems = List<NewsModel>.generate(
-      endIndex - startIndex,
-      (index) {
-        final randomCategory = faker.randomGenerator.element([
-          'Technology',
-          'Health',
-          'Sports',
-          'Business',
-          'Entertainment',
-        ]);
-
-        return NewsModel(
-          title: faker.lorem.sentence(),
-          imageUrl: faker.image.loremPicsum(),
-          publishedAt: faker.date.dateTime(),
-          category: CategoryModel(name: randomCategory),
-        );
-      },
-    );
-
-    return ResultModel<NewsModel>(
-      data: newsItems,
-      count: totalNewsItems,
-    );
   }
 }
