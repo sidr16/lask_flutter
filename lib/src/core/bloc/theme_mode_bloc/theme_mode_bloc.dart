@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../config/constants/constants.dart';
+import '../../config/constants/enums.dart';
 import '../../locators/extensions.dart';
 import '../../locators/service_locator.dart';
 import 'theme_mode_events.dart';
@@ -27,8 +27,8 @@ class ThemeModeBloc extends Bloc<ThemeModeEvent, ThemeModeState> {
     Emitter<ThemeModeState> emit,
   ) async {
     final prefs = getIt.sharedPreferences;
-    final savedThemeMode =
-        prefs.getString(SharedPrefsKeys.themeMode) ?? ThemeMode.system.name;
+    final savedThemeMode = prefs.getString(SharedPrefsKeys.themeMode.name) ??
+        ThemeMode.system.name;
     final themeMode = _getThemeModeByName(savedThemeMode);
     emit(ThemeModeState(themeMode: themeMode));
   }
@@ -64,7 +64,7 @@ class ThemeModeBloc extends Bloc<ThemeModeEvent, ThemeModeState> {
 
   Future<void> _saveThemeMode(ThemeMode themeMode) async {
     final prefs = getIt.sharedPreferences;
-    await prefs.setString(SharedPrefsKeys.themeMode, themeMode.name);
+    await prefs.setString(SharedPrefsKeys.themeMode.name, themeMode.name);
   }
 
   ThemeMode _getThemeModeByName(String name) {

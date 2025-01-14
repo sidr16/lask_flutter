@@ -96,8 +96,8 @@ class _NewsCardState extends State<NewsCard> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: Paddings.xSmall,
-              vertical: Paddings.medium,
+              horizontal: Spaces.xSmall,
+              vertical: Spaces.medium,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,7 +189,7 @@ class _NewsCardState extends State<NewsCard> {
     return IntrinsicHeight(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(
-          BorderRadiuses.small,
+          Radiuses.small,
         ),
         child: CachedNetworkImage(
           fit: BoxFit.cover,

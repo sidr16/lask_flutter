@@ -1,6 +1,7 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 abstract class  LocaleKeys {
+  static const title = 'title';
   static const errors_connection_timeout = 'errors.connection_timeout';
   static const errors_send_timeout = 'errors.send_timeout';
   static const errors_receive_timeout = 'errors.receive_timeout';

@@ -31,8 +31,8 @@ class AppNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(BorderRadiuses.large),
-        topRight: Radius.circular(BorderRadiuses.large),
+        topLeft: Radius.circular(Spaces.large),
+        topRight: Radius.circular(Spaces.large),
       ),
       child: BlurWrapper(
         child: BottomNavigationBar(

@@ -27,11 +27,11 @@ class AppNavigationBarButton extends StatelessWidget {
       duration: Durations.medium3,
       decoration: BoxDecoration(
         color: isActive ? context.colors.textPrimary : null,
-        borderRadius: BorderRadius.circular(BorderRadiuses.full),
+        borderRadius: BorderRadius.circular(Radiuses.full),
       ),
       padding: const EdgeInsets.symmetric(
-        vertical: Paddings.xSmall,
-        horizontal: Paddings.medium,
+        vertical: Spaces.xSmall,
+        horizontal: Spaces.medium,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

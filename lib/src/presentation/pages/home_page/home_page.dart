@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
       appBar: const HomePageAppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
-          vertical: Paddings.xSmall,
+          vertical: Spaces.xSmall,
         ),
         child: Column(
           children: [

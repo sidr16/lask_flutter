@@ -9,8 +9,8 @@ class NewsListView extends StatelessWidget {
     required this.news,
     this.onItemBuildIndex,
     this.padding = const EdgeInsets.symmetric(
-      vertical: Paddings.xSmall,
-      horizontal: Paddings.xLarge,
+      vertical: Spaces.xSmall,
+      horizontal: Spaces.xLarge,
     ),
     this.scrollDirection = Axis.vertical,
     this.cardType = NewsCardType.small,

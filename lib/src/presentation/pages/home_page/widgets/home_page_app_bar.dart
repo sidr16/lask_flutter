@@ -18,7 +18,7 @@ class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: preferredSize.height,
       leading: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: Paddings.xLarge,
+          horizontal: Spaces.xLarge,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

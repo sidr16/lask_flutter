@@ -8,6 +8,7 @@ import 'src/core/config/locales/locales.dart';
 import 'src/core/config/router/app_router.dart';
 import 'src/core/config/theme/app_theme.dart';
 import 'src/core/localization/codegen_loader.g.dart';
+import 'src/core/localization/locale_keys.g.dart';
 import 'src/core/locators/service_locator.dart';
 
 Future<void> main() async {
@@ -16,6 +17,7 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
 
   await ServiceLocator.registerAsync();
+
   ServiceLocator.registerSync();
 
   runApp(
@@ -44,9 +46,9 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<ThemeModeBloc, ThemeModeState>(
       builder: (BuildContext context, ThemeModeState state) {
         return MaterialApp.router(
-          title: 'Lask',
           theme: AppTheme.light,
           darkTheme: AppTheme.dark,
+          title: LocaleKeys.title.tr(),
           routerConfig: getIt.get<AppRouter>().router,
           themeMode: state.themeMode,
         );

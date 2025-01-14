@@ -29,7 +29,7 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: false,
       leadingWidth: leadingWidth,
       toolbarHeight: toolbarHeight,
-      titleSpacing: Paddings.xLarge,
+      titleSpacing: Spaces.xLarge,
       backgroundColor: context.colors.brandBlue10,
       titleTextStyle: context.textStyles.heading3,
       title: title != null ? Text(title!) : null,

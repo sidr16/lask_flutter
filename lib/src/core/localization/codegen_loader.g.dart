@@ -15,6 +15,7 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> en = {
+  "title": "Lask",
   "errors": {
     "connection_timeout": "Connection timeout exceeded",
     "send_timeout": "Send timeout exceeded",
