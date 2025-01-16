@@ -1,3 +1,3 @@
-enum SharedPrefsKeys {
+enum SharedPrefsKey {
   themeMode,
 }

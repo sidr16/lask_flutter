@@ -27,8 +27,8 @@ class ThemeModeBloc extends Bloc<ThemeModeEvent, ThemeModeState> {
     Emitter<ThemeModeState> emit,
   ) async {
     final prefs = getIt.sharedPreferences;
-    final savedThemeMode = prefs.getString(SharedPrefsKeys.themeMode.name) ??
-        ThemeMode.system.name;
+    final savedThemeMode =
+        prefs.getString(SharedPrefsKey.themeMode.name) ?? ThemeMode.system.name;
     final themeMode = _getThemeModeByName(savedThemeMode);
     emit(ThemeModeState(themeMode: themeMode));
   }
@@ -64,7 +64,7 @@ class ThemeModeBloc extends Bloc<ThemeModeEvent, ThemeModeState> {
 
   Future<void> _saveThemeMode(ThemeMode themeMode) async {
     final prefs = getIt.sharedPreferences;
-    await prefs.setString(SharedPrefsKeys.themeMode.name, themeMode.name);
+    await prefs.setString(SharedPrefsKey.themeMode.name, themeMode.name);
   }
 
   ThemeMode _getThemeModeByName(String name) {
