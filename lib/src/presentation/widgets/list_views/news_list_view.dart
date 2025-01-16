@@ -46,19 +46,27 @@ class NewsListView extends StatelessWidget {
         padding: padding ?? EdgeInsets.zero,
         sliver: SliverList.separated(
           itemBuilder: (context, index) {
+            if (news.length == index) {
+              return const SafeArea(
+                child: SizedBox.shrink(),
+              );
+            }
+
+            final item = news[index];
+
             onItemBuildIndex?.call(index);
 
             return NewsCard(
               type: isFirstLarge && index == 0 ? NewsCardType.large : cardType,
-              title: news[index].title,
-              imageUrl: news[index].imageUrl,
-              subtitle: news[index].category?.name,
+              title: item.title,
+              imageUrl: item.imageUrl,
+              subtitle: item.category?.name,
             );
           },
           separatorBuilder: (BuildContext context, int index) {
             return Gaps.medium;
           },
-          itemCount: news.length,
+          itemCount: news.length + 1,
         ),
       );
     }
@@ -69,19 +77,28 @@ class NewsListView extends StatelessWidget {
         scrollDirection: scrollDirection,
         padding: padding,
         itemBuilder: (context, index) {
+          if (news.length == index) {
+            return const SafeArea(
+              child: SizedBox.shrink(),
+            );
+          }
+
+          final item = news[index];
+          final isFirst = index == 0;
+
           onItemBuildIndex?.call(index);
 
           return NewsCard(
-            type: isFirstLarge && index == 0 ? NewsCardType.large : cardType,
-            title: news[index].title,
-            imageUrl: news[index].imageUrl,
-            subtitle: news[index].category?.name,
+            title: item.title,
+            imageUrl: item.imageUrl,
+            subtitle: item.category?.name,
+            type: isFirstLarge && isFirst ? NewsCardType.large : cardType,
           );
         },
         separatorBuilder: (context, index) {
           return Gaps.medium;
         },
-        itemCount: news.length,
+        itemCount: news.length + 1,
       ),
     );
   }

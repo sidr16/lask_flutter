@@ -45,7 +45,10 @@ class NewsDataSourceImpl implements NewsDataSource {
             title: faker.lorem.sentence(),
             imageUrl: faker.image.loremPicsum(),
             publishedAt: faker.date.dateTime(),
-            category: CategoryModel(name: randomCategory),
+            category: CategoryModel(
+              name: randomCategory,
+              id: faker.randomGenerator.integer(1000),
+            ),
           );
         },
       );
@@ -54,6 +57,35 @@ class NewsDataSourceImpl implements NewsDataSource {
         data: newsItems,
         count: totalNewsItems,
       );
+    } catch (error, stackTrace) {
+      throw ExceptionHandler.handle(
+        error,
+        stackTrace: stackTrace,
+      );
+    }
+  }
+
+  @override
+  Future<List<CategoryModel>> fetchCategories() async {
+    try {
+      await Future.delayed(const Duration(milliseconds: 300), () {});
+
+      final faker = Faker();
+      final categories = List<CategoryModel>.generate(
+        5,
+        (index) => CategoryModel(
+          name: faker.randomGenerator.element([
+            'Technology',
+            'Health',
+            'Sports',
+            'Business',
+            'Entertainment',
+          ]),
+          id: faker.randomGenerator.integer(1000),
+        ),
+      );
+
+      return categories;
     } catch (error, stackTrace) {
       throw ExceptionHandler.handle(
         error,

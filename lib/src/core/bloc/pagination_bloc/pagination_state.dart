@@ -31,7 +31,7 @@ class PaginationLoadingWithDataState<T extends Object>
 class PaginationErrorState<T extends Object> extends PaginationState<T> {
   PaginationErrorState({required this.error});
 
-  final dynamic error;
+  final Object error;
 
   @override
   List<Object?> get props => [error];

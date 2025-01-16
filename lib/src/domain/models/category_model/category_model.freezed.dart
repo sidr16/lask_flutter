@@ -20,6 +20,7 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CategoryModel {
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   /// Serializes this CategoryModel to a JSON map.
@@ -38,7 +39,7 @@ abstract class $CategoryModelCopyWith<$Res> {
           CategoryModel value, $Res Function(CategoryModel) then) =
       _$CategoryModelCopyWithImpl<$Res, CategoryModel>;
   @useResult
-  $Res call({String name});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -56,9 +57,14 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -75,7 +81,7 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       __$$CategoryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
@@ -91,9 +97,14 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
   }) {
     return _then(_$CategoryModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -105,17 +116,19 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CategoryModelImpl implements _CategoryModel {
-  _$CategoryModelImpl({required this.name});
+  _$CategoryModelImpl({required this.id, required this.name});
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryModelImplFromJson(json);
 
   @override
+  final int id;
+  @override
   final String name;
 
   @override
   String toString() {
-    return 'CategoryModel(name: $name)';
+    return 'CategoryModel(id: $id, name: $name)';
   }
 
   @override
@@ -123,12 +136,13 @@ class _$CategoryModelImpl implements _CategoryModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   /// Create a copy of CategoryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -147,11 +161,14 @@ class _$CategoryModelImpl implements _CategoryModel {
 }
 
 abstract class _CategoryModel implements CategoryModel {
-  factory _CategoryModel({required final String name}) = _$CategoryModelImpl;
+  factory _CategoryModel({required final int id, required final String name}) =
+      _$CategoryModelImpl;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$CategoryModelImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get name;
 

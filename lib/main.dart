@@ -10,6 +10,7 @@ import 'src/core/config/theme/app_theme.dart';
 import 'src/core/localization/codegen_loader.g.dart';
 import 'src/core/localization/locale_keys.g.dart';
 import 'src/core/locators/service_locator.dart';
+import 'src/presentation/bloc/categories_bloc/categories_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,10 @@ Future<void> main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt.get<ThemeModeBloc>(),
+          create: (context) => getIt<ThemeModeBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<CategoriesBloc>(),
         ),
       ],
       child: EasyLocalization(

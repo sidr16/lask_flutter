@@ -27,7 +27,12 @@ class PaginationBloc<T extends Object>
   final int pageSize;
   final PaginationFetchDataAction<T> onFetchData;
 
+  bool _isInitialized = false;
+
   void initialize() {
+    print(state);
+    if (_isInitialized) return;
+    _isInitialized = true;
     add(PaginationInitialFetchEvent());
   }
 

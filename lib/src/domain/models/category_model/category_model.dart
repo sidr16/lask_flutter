@@ -6,6 +6,7 @@ part 'category_model.g.dart';
 @freezed
 class CategoryModel with _$CategoryModel {
   factory CategoryModel({
+    required int id,
     required String name,
   }) = _CategoryModel;
 

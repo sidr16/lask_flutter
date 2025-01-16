@@ -6,7 +6,7 @@ extension PaginationStateExtension<T extends Object> on PaginationState<T> {
   Widget when({
     required Widget Function(List<T> data, bool isLoading) data,
     required Widget Function() loading,
-    required Widget Function(dynamic error) error,
+    required Widget Function(Object error) error,
   }) {
     return switch (this) {
       final PaginationLoadedDataState<T> state => data(state.data, false),

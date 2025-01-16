@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/config/constants/constants.dart';
+import '../../../domain/models/category_model/category_model.dart';
 import '../buttons/primary_selectable_button.dart';
 
 class CategoryListView extends StatelessWidget {
-  const CategoryListView({super.key});
+  const CategoryListView({
+    this.categories = const [],
+    this.selected,
+    this.onSelect,
+    super.key,
+  });
+
+  final CategoryModel? selected;
+  final List<CategoryModel> categories;
+  final void Function(CategoryModel category)? onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +27,21 @@ class CategoryListView extends StatelessWidget {
         ),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
+          final category = categories[index];
+          final isSelected = selected == category;
+
           return PrimarySelectableButton(
-            title: 'Category ${index + 1}',
-            onPressed: () {},
-            isSelected: index == 0,
+            title: category.name,
+            onPressed: () {
+              onSelect?.call(category);
+            },
+            isSelected: isSelected,
           );
         },
         separatorBuilder: (context, index) {
           return Gaps.xSmall;
         },
-        itemCount: 10,
+        itemCount: categories.length,
       ),
     );
   }
