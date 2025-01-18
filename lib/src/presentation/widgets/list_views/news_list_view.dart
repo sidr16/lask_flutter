@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../config/constants/constants.dart';
+import '../../../core/constants/constants.dart';
 import '../../../domain/models/news_model/news_model.dart';
 import '../cards/news_card.dart';
 

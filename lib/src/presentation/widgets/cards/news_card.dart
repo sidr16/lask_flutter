@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../config/constants/constants.dart';
 import '../../../config/theme/app_theme.dart';
+import '../../../core/constants/constants.dart';
 import '../shimmer/primary_shimmer.dart';
 
 enum NewsCardType {

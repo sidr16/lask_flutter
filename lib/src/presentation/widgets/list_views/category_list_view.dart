@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../config/constants/constants.dart';
+import '../../../core/constants/constants.dart';
 import '../../../domain/models/category_model/category_model.dart';
 import '../buttons/primary_selectable_button.dart';
 

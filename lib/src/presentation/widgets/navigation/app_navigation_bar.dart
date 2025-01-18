@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/assets/svg_icons.dart';
-import '../../../config/constants/constants.dart';
+import '../../../core/constants/constants.dart';
 import '../wrappers/blur_wrapper.dart';
 import 'app_navigation_bar_button.dart';
 

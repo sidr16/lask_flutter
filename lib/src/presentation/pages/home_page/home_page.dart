@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../config/constants/constants.dart';
+import '../../../core/constants/constants.dart';
 import '../../widgets/list_views/news_list_view.dart';
 import 'widgets/home_page_app_bar.dart';
 
