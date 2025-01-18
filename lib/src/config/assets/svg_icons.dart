@@ -1,32 +1,17 @@
-import 'package:flutter/foundation.dart';
-
-@immutable
 class SvgIcon {
-  const SvgIcon(
-    this.path,
-  );
+  const SvgIcon(this.path);
 
   final String path;
 }
 
-@immutable
 class SvgIcons {
-  const SvgIcons._();
-
   static const _defaultBasePath = 'assets/icons';
 
-  static SvgIcon _buildSvgPath(
-    String iconName, [
-    String basePath = _defaultBasePath,
-  ]) {
-    return SvgIcon('$basePath/$iconName.svg');
-  }
+  static const homeAlt = SvgIcon('$_defaultBasePath/home_alt.svg');
 
-  static final homeAlt = _buildSvgPath('home_alt');
+  static const bookHeart = SvgIcon('$_defaultBasePath/book_heart.svg');
 
-  static final bookHeart = _buildSvgPath('book_heart');
+  static const globeAsia = SvgIcon('$_defaultBasePath/globe_asia.svg');
 
-  static final globeAsia = _buildSvgPath('globe_asia');
-
-  static final user = _buildSvgPath('user');
+  static const user = SvgIcon('$_defaultBasePath/user.svg');
 }
