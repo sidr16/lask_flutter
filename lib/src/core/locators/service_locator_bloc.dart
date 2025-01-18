@@ -13,8 +13,8 @@ class BlocServiceLocator {
           category: category,
         ),
       )
-      ..registerSingleton<CategoriesBloc>(
-        CategoriesBloc(getIt<NewsRepository>())..fetch(),
+      ..registerFactory<CategoriesBloc>(
+        () => CategoriesBloc(getIt<NewsRepository>())..fetch(),
       );
   }
 }
