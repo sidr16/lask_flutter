@@ -14,7 +14,7 @@ class NewsApiImpl implements NewsApi {
     const totalNewsItems = 100;
 
     try {
-      await Future.delayed(const Duration(milliseconds: 500), () {});
+      await Future.delayed(const Duration(milliseconds: 100), () {});
 
       final startIndex = page * pageSize;
       final endIndex = min(startIndex + pageSize, totalNewsItems);
@@ -65,7 +65,7 @@ class NewsApiImpl implements NewsApi {
   @override
   Future<List<CategoryModel>> fetchCategories() async {
     try {
-      await Future.delayed(const Duration(milliseconds: 300), () {});
+      await Future.delayed(const Duration(milliseconds: 100), () {});
 
       final faker = Faker();
       final categories = List<CategoryModel>.generate(
