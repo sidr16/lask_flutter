@@ -10,7 +10,11 @@ import 'news_api.dart';
 
 class NewsApiImpl implements NewsApi {
   @override
-  Future<ResultModel<NewsModel>> fetchNews(int page, int pageSize) async {
+  Future<ResultModel<NewsModel>> fetchNews({
+    required int page,
+    required int pageSize,
+    Map<String, dynamic>? params,
+  }) async {
     const totalNewsItems = 100;
 
     try {

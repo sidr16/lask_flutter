@@ -10,8 +10,16 @@ class NewsRepositoryImpl extends NewsRepository {
   final NewsApi _newsApi;
 
   @override
-  Future<ResultModel<NewsModel>> fetchNews(int page, int pageSize) {
-    return _newsApi.fetchNews(page, pageSize);
+  Future<ResultModel<NewsModel>> fetchNews({
+    required int page,
+    required int pageSize,
+    Map<String, dynamic>? params,
+  }) {
+    return _newsApi.fetchNews(
+      page: page,
+      pageSize: pageSize,
+      params: params,
+    );
   }
 
   @override

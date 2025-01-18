@@ -6,7 +6,15 @@ import '../../../domain/repositories/news_repository.dart';
 class NewsBloc extends PaginationBloc<NewsModel> {
   NewsBloc(this.repository, {this.category})
       : super(
-          onFetchData: repository.fetchNews,
+          onFetchData: (page, pageSize) {
+            return repository.fetchNews(
+              page: page,
+              pageSize: pageSize,
+              params: {
+                if (category != null) 'category': category.id,
+              },
+            );
+          },
         );
 
   final NewsRepository repository;
