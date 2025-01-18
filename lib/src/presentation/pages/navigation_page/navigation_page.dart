@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/config/assets/svg_icons.dart';
+import '../../../config/assets/svg_icons.dart';
 import '../../widgets/navigation/app_navigation_bar.dart';
 
 class NavigationPage extends StatelessWidget {

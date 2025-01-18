@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/config/constants/constants.dart';
-import '../../../core/config/theme/app_theme.dart';
+import '../../../config/constants/constants.dart';
+import '../../../config/theme/app_theme.dart';
 
 class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SecondaryAppBar({

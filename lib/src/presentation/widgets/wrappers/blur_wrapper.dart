@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../../core/config/theme/app_theme.dart';
+import '../../../config/theme/app_theme.dart';
 
 class BlurWrapper extends StatelessWidget {
   const BlurWrapper({

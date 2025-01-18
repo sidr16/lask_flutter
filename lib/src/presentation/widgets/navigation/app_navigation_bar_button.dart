@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/config/assets/svg_icons.dart';
-import '../../../core/config/constants/constants.dart';
-import '../../../core/config/theme/app_theme.dart';
+import '../../../config/assets/svg_icons.dart';
+import '../../../config/constants/constants.dart';
+import '../../../config/theme/app_theme.dart';
 import '../svg/svg_asset.dart';
 
 class AppNavigationBarButton extends StatelessWidget {

@@ -1,11 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../config/router/app_router.dart';
 import '../../data/locator/service_locator.dart';
 import '../../domain/locator/service_locator.dart';
 import '../../presentation/locator/service_locator.dart';
 import '../bloc/theme_mode_bloc/theme_mode_bloc.dart';
-import '../config/router/app_router.dart';
 
 final getIt = GetIt.instance;
 

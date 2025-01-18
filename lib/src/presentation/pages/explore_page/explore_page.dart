@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../config/constants/constants.dart';
 import '../../../core/bloc/pagination_bloc/pagination_extension.dart';
 import '../../../core/bloc/pagination_bloc/pagination_state.dart';
-import '../../../core/config/constants/constants.dart';
 import '../../../core/locators/service_locator.dart';
 import '../../../domain/models/category_model/category_model.dart';
 import '../../../domain/models/news_model/news_model.dart';

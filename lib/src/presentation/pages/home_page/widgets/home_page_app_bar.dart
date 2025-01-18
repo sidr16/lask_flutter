@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../config/constants/constants.dart';
+import '../../../../config/theme/app_theme.dart';
 import '../../../../core/bloc/theme_mode_bloc/theme_mode_bloc.dart';
-import '../../../../core/config/constants/constants.dart';
-import '../../../../core/config/theme/app_theme.dart';
 import '../../../widgets/app_bar/secondary_app_bar.dart';
 
 class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
