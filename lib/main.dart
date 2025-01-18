@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'src/config/locales/locales.dart';
+import 'src/config/locales/app_locales.dart';
 import 'src/config/router/app_router.dart';
 import 'src/config/theme/app_theme.dart';
 import 'src/core/bloc/theme_mode_bloc/theme_mode_bloc.dart';

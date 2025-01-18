@@ -25,7 +25,7 @@ class NavigationPage extends StatelessWidget {
           );
         },
         currentIndex: navigationShell.currentIndex,
-        items: [
+        items: const [
           AppNavigationBarItem(
             name: 'Home',
             icon: SvgIcons.homeAlt,
