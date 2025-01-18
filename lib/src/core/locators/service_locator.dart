@@ -2,10 +2,10 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../config/router/app_router.dart';
-import '../../data/locator/service_locator.dart';
-import '../../domain/locator/service_locator.dart';
-import '../../presentation/locator/service_locator.dart';
 import '../bloc/theme_mode_bloc/theme_mode_bloc.dart';
+import 'service_locator_bloc.dart';
+import 'service_locator_data.dart';
+import 'service_locator_domain.dart';
 
 final getIt = GetIt.instance;
 
@@ -20,7 +20,7 @@ class ServiceLocator {
     _registerGenerals();
     DataServiceLocator.register();
     DomainServiceLocator.register();
-    PresentationServiceLocator.register();
+    BlocServiceLocator.register();
   }
 
   static void _registerGenerals() {

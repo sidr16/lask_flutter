@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constants/enums.dart';
-import '../../locators/extensions.dart';
 import '../../locators/service_locator.dart';
+import '../../utils/extensions/get_it_extension.dart';
 import 'theme_mode_events.dart';
 import 'theme_mode_state.dart';
 
