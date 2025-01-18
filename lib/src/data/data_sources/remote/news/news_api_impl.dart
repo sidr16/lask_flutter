@@ -2,20 +2,17 @@ import 'dart:math';
 
 import 'package:faker/faker.dart';
 
-import '../../core/utils/exception/exception_handler.dart';
-import '../../domain/models/category_model/category_model.dart';
-import '../../domain/models/news_model/news_model.dart';
-import '../../domain/models/result_model/result_model.dart';
-import 'news_data_source.dart';
+import '../../../../core/utils/exception/exception_handler.dart';
+import '../../../../domain/models/category_model/category_model.dart';
+import '../../../../domain/models/news_model/news_model.dart';
+import '../../../../domain/models/result_model/result_model.dart';
+import 'news_api.dart';
 
-class NewsDataSourceImpl implements NewsDataSource {
-  NewsDataSourceImpl({this.totalNewsItems = 100});
-
-  @override
-  final int totalNewsItems;
-
+class NewsApiImpl implements NewsApi {
   @override
   Future<ResultModel<NewsModel>> fetchNews(int page, int pageSize) async {
+    const totalNewsItems = 100;
+
     try {
       await Future.delayed(const Duration(milliseconds: 500), () {});
 
