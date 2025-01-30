@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/bloc/pagination_bloc/pagination_extension.dart';
 import '../../../core/bloc/pagination_bloc/pagination_state.dart';
 import '../../../core/constants/constants.dart';
-import '../../../core/locators/service_locator.dart';
+import '../../../core/di/injectable.dart';
 import '../../../domain/models/category_model/category_model.dart';
 import '../../../domain/models/news_model/news_model.dart';
 import '../../bloc/categories_bloc/categories_bloc.dart';
@@ -130,16 +130,14 @@ class _BuildNewsList extends StatefulWidget {
 
 class _BuildNewsListState extends State<_BuildNewsList>
     with AutomaticKeepAliveClientMixin {
-  late final newsBloc = getIt<NewsBloc>(
-    param1: widget.category,
-  );
+  late final newsBloc = getIt<NewsBloc>();
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
     return BlocProvider(
-      create: (context) => newsBloc..initialize(),
+      create: (context) => newsBloc..initialize(widget.category),
       child: BlocBuilder<NewsBloc, PaginationState<NewsModel>>(
         builder: (context, state) {
           return state.when(

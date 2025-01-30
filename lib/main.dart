@@ -7,9 +7,9 @@ import 'src/config/router/app_router.dart';
 import 'src/config/theme/app_theme.dart';
 import 'src/core/bloc/theme_mode_bloc/theme_mode_bloc.dart';
 import 'src/core/bloc/theme_mode_bloc/theme_mode_state.dart';
+import 'src/core/di/injectable.dart';
 import 'src/core/localization/codegen_loader.g.dart';
 import 'src/core/localization/locale_keys.g.dart';
-import 'src/core/locators/service_locator.dart';
 import 'src/presentation/bloc/categories_bloc/categories_bloc.dart';
 
 Future<void> main() async {
@@ -17,18 +17,16 @@ Future<void> main() async {
 
   await EasyLocalization.ensureInitialized();
 
-  await ServiceLocator.registerAsync();
-
-  ServiceLocator.registerSync();
+  await ServiceLocator.configureDependencies();
 
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<ThemeModeBloc>(),
+          create: (context) => getIt<ThemeModeBloc>()..initialize(),
         ),
         BlocProvider(
-          create: (context) => getIt<CategoriesBloc>(),
+          create: (context) => getIt<CategoriesBloc>()..fetch(),
         ),
       ],
       child: EasyLocalization(

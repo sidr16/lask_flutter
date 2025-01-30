@@ -1,18 +1,21 @@
 import 'dart:async';
 
+import 'package:either_dart/either.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/models/result_model/result_model.dart';
+import '../../utils/exception/exception_handler.dart';
 import 'pagination_events.dart';
 import 'pagination_state.dart';
 
-typedef PaginationFetchDataAction<T extends Object> = Future<ResultModel<T>>
-    Function(
+typedef PaginationFetchDataAction<T extends Object, N extends Object?>
+    = Future<Either<AppException, ResultModel<T>>> Function(
   int page,
   int pageSize,
+  N? args,
 );
 
-class PaginationBloc<T extends Object>
+class PaginationBloc<T extends Object, N extends Object?>
     extends Bloc<PaginationEvent, PaginationState<T>> {
   PaginationBloc({
     required this.onFetchData,
@@ -23,16 +26,17 @@ class PaginationBloc<T extends Object>
     on<PaginationFetchDataEvent<T>>(_onFetchData);
   }
 
-  int page = 0;
+  N? _args;
+  int _page = 0;
+
+  N? get args => _args;
+  int get page => _page;
+
   final int pageSize;
-  final PaginationFetchDataAction<T> onFetchData;
+  final PaginationFetchDataAction<T, N?> onFetchData;
 
-  bool _isInitialized = false;
-
-  void initialize() {
-    print(state);
-    if (_isInitialized) return;
-    _isInitialized = true;
+  void initialize([N? args]) {
+    _args = args;
     add(PaginationInitialFetchEvent());
   }
 
@@ -72,7 +76,7 @@ class PaginationBloc<T extends Object>
     PaginationInitialFetchEvent event,
     Emitter<PaginationState> emit,
   ) async {
-    page = 0;
+    _page = 0;
     add(PaginationFetchDataEvent<T>());
   }
 
@@ -80,7 +84,7 @@ class PaginationBloc<T extends Object>
     PaginationFetchDataEvent<T> event,
     Emitter<PaginationState> emit,
   ) async {
-    final dataIsEmpty = event.data.isEmpty || page == 0;
+    final dataIsEmpty = event.data.isEmpty || _page == 0;
 
     if (dataIsEmpty) {
       emit(PaginationLoadingState<T>());
@@ -93,33 +97,37 @@ class PaginationBloc<T extends Object>
       );
     }
 
-    try {
-      final result = await onFetchData(page, pageSize);
+    final result = await onFetchData(
+      _page,
+      pageSize,
+      _args,
+    );
 
-      page++;
-
-      emit(
-        PaginationLoadedDataState<T>(
-          count: result.count,
-          data: [...event.data, ...result.data],
-        ),
-      );
-    } on Exception catch (err) {
+    result.fold((error) {
       if (dataIsEmpty) {
         emit(
           PaginationErrorState<T>(
-            error: err,
+            error: error,
           ),
         );
       } else {
         emit(
           PaginationErrorWithLoadedDataState<T>(
-            error: err,
+            error: error,
             count: event.count,
             data: event.data,
           ),
         );
       }
-    }
+    }, (data) {
+      _page++;
+
+      emit(
+        PaginationLoadedDataState<T>(
+          count: data.count,
+          data: [...event.data, ...data.data],
+        ),
+      );
+    });
   }
 }

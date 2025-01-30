@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../presentation/pages/explore_page/explore_page.dart';
 import '../../presentation/pages/home_page/home_page.dart';
 import '../../presentation/pages/navigation_page/navigation_page.dart';
 import 'app_router_endpoints.dart';
 
+@lazySingleton
 class AppRouter {
   final navigatorKey = GlobalKey<NavigatorState>();
 

@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:either_dart/either.dart';
 import 'package:faker/faker.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/exception/exception_handler.dart';
 import '../../../../domain/models/category_model/category_model.dart';
@@ -8,9 +10,10 @@ import '../../../../domain/models/news_model/news_model.dart';
 import '../../../../domain/models/result_model/result_model.dart';
 import 'news_api.dart';
 
+@Singleton(as: NewsApi)
 class NewsApiImpl implements NewsApi {
   @override
-  Future<ResultModel<NewsModel>> fetchNews({
+  Future<Either<AppException, ResultModel<NewsModel>>> fetchNews({
     required int page,
     required int pageSize,
     Map<String, dynamic>? params,
@@ -18,15 +21,17 @@ class NewsApiImpl implements NewsApi {
     const totalNewsItems = 100;
 
     try {
-      await Future.delayed(const Duration(milliseconds: 100), () {});
+      await Future.delayed(const Duration(milliseconds: 500), () {});
 
       final startIndex = page * pageSize;
       final endIndex = min(startIndex + pageSize, totalNewsItems);
 
       if (startIndex >= totalNewsItems) {
-        return ResultModel<NewsModel>(
-          data: [],
-          count: totalNewsItems,
+        return Right(
+          ResultModel<NewsModel>(
+            data: [],
+            count: totalNewsItems,
+          ),
         );
       }
 
@@ -54,14 +59,18 @@ class NewsApiImpl implements NewsApi {
         },
       );
 
-      return ResultModel<NewsModel>(
-        data: newsItems,
-        count: totalNewsItems,
+      return Right(
+        ResultModel<NewsModel>(
+          data: newsItems,
+          count: totalNewsItems,
+        ),
       );
     } catch (error, stackTrace) {
-      throw ExceptionHandler.handle(
-        error,
-        stackTrace: stackTrace,
+      return Left(
+        ExceptionHandler.handle(
+          error,
+          stackTrace: stackTrace,
+        ),
       );
     }
   }

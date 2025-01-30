@@ -12,7 +12,10 @@ class PaginationLoadItemAtIndexEvent extends PaginationEvent {
 }
 
 class PaginationFetchDataEvent<T extends Object> extends PaginationEvent {
-  PaginationFetchDataEvent({this.data = const [], this.count = 0});
+  PaginationFetchDataEvent({
+    this.data = const [],
+    this.count = 0,
+  });
 
   final int count;
   final List<T> data;
