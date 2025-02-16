@@ -9,31 +9,36 @@ import '../headers/section_head.dart';
 import '../list_views/news_list_view.dart';
 import '../shimmer/news_shimmer_list_view.dart';
 
-class NewsSection extends StatelessWidget {
+class NewsSection extends StatefulWidget {
   const NewsSection({super.key, this.title});
 
   final String? title;
 
   @override
-  Widget build(BuildContext context) {
-    final newsBloc = getIt<NewsBloc>();
+  State<NewsSection> createState() => _NewsSectionState();
+}
 
+class _NewsSectionState extends State<NewsSection> {
+  final _newsBloc = getIt<NewsBloc>();
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       spacing: Spaces.medium,
       children: [
-        if (title != null)
+        if (widget.title != null)
           SectionHead(
-            title: title!,
+            title: widget.title!,
           ),
         BlocProvider(
-          create: (context) => newsBloc..initialize(),
+          create: (context) => _newsBloc..initialize(),
           child: BlocBuilder<NewsBloc, NewsState>(
             builder: (context, state) {
               return state.when(
                 data: (data, isLoading) {
                   return NewsListView.horizontal(
                     news: data,
-                    onItemBuildIndex: newsBloc.onLoadItemAtIndex,
+                    onItemBuildIndex: _newsBloc.onLoadItemAtIndex,
                   );
                 },
                 loading: NewsShimmerListView.horizontal,
