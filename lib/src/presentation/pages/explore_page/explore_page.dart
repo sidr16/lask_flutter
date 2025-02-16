@@ -34,7 +34,7 @@ class _ExplorePageState extends State<ExplorePage> {
   }
 
   void _pageListener() {
-    final page = _pageController.page?.floor();
+    final page = _pageController.page?.round();
 
     if (page == null) return;
 
