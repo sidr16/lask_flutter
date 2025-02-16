@@ -69,6 +69,7 @@ class _NewsCardState extends State<NewsCard> {
   Widget _buildLarge() {
     return SizedBox(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: 200,
@@ -163,7 +164,7 @@ class _NewsCardState extends State<NewsCard> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: CachedNetworkImage(
-              imageUrl: 'https://picsum.photos/200/300',
+              imageUrl: 'https://picsum.photos/50/50',
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
@@ -171,14 +172,18 @@ class _NewsCardState extends State<NewsCard> {
           ),
         ),
         Gaps.small,
-        Text.rich(
-          style: context.textStyles.footnoteRegular,
-          const TextSpan(
-            children: [
-              TextSpan(text: 'Melissa White'),
-              TextSpan(text: ' • '),
-              TextSpan(text: 'May 7, 2023'),
-            ],
+        Expanded(
+          child: Text.rich(
+            style: context.textStyles.footnoteRegular,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            const TextSpan(
+              children: [
+                TextSpan(text: 'Melissa White'),
+                TextSpan(text: ' • '),
+                TextSpan(text: 'May 7, 2023'),
+              ],
+            ),
           ),
         ),
       ],

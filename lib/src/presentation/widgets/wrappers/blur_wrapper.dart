@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -16,10 +17,12 @@ class BlurWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sigma = Platform.isIOS ? 5.0 : 0.0;
+
     return BackdropFilter(
       filter: ImageFilter.blur(
-        sigmaX: 5,
-        sigmaY: 5,
+        sigmaX: sigma,
+        sigmaY: sigma,
       ),
       enabled: enabled,
       child: AnimatedContainer(

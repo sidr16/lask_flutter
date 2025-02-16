@@ -23,11 +23,13 @@ class NewsListView extends StatelessWidget {
   factory NewsListView.horizontal({
     required List<NewsModel> news,
     NewsCardType cardType = NewsCardType.primary,
+    void Function(int index)? onItemBuildIndex,
   }) =>
       NewsListView(
-        scrollDirection: Axis.horizontal,
-        cardType: cardType,
         news: news,
+        cardType: cardType,
+        scrollDirection: Axis.horizontal,
+        onItemBuildIndex: onItemBuildIndex,
       );
 
   final double height;

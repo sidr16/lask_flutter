@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/bloc/pagination_bloc/pagination_extension.dart';
-import '../../../core/bloc/pagination_bloc/pagination_state.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/di/injectable.dart';
 import '../../../domain/models/category_model/category_model.dart';
-import '../../../domain/models/news_model/news_model.dart';
 import '../../bloc/categories_bloc/categories_bloc.dart';
 import '../../bloc/categories_bloc/categories_state.dart';
 import '../../bloc/news_bloc/news_bloc.dart';
 import '../../widgets/app_bar/secondary_app_bar.dart';
 import '../../widgets/list_views/category_list_view.dart';
 import '../../widgets/list_views/news_list_view.dart';
+import '../../widgets/shimmer/news_shimmer_list_view.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
@@ -138,7 +137,7 @@ class _BuildNewsListState extends State<_BuildNewsList>
 
     return BlocProvider(
       create: (context) => newsBloc..initialize(widget.category),
-      child: BlocBuilder<NewsBloc, PaginationState<NewsModel>>(
+      child: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
           return state.when(
             data: (data, isLoading) {
@@ -148,8 +147,8 @@ class _BuildNewsListState extends State<_BuildNewsList>
                 onItemBuildIndex: newsBloc.onLoadItemAtIndex,
               );
             },
-            loading: () => const Center(
-              child: CircularProgressIndicator(),
+            loading: () => const NewsShimmerListView(
+              isFirstLarge: true,
             ),
             error: ErrorWidget.new,
           );
