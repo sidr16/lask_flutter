@@ -23,15 +23,12 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   final _scrollController = ScrollController();
 
-  final _isScrolledDown = ValueNotifier<bool>(false);
-
   int _pageIndex = 0;
 
   final _pageController = PageController();
 
   @override
   void initState() {
-    _scrollController.addListener(_scrollListener);
     _pageController.addListener(_pageListener);
     super.initState();
   }
@@ -47,19 +44,10 @@ class _ExplorePageState extends State<ExplorePage> {
     }
   }
 
-  void _scrollListener() {
-    final isScrolledDown = _scrollController.position.pixels > 50;
-    if (_isScrolledDown.value != isScrolledDown) {
-      _isScrolledDown.value = isScrolledDown;
-    }
-  }
-
   @override
   void dispose() {
-    _scrollController.removeListener(_scrollListener);
     _pageController.removeListener(_pageListener);
 
-    _isScrolledDown.dispose();
     _scrollController.dispose();
     super.dispose();
   }
