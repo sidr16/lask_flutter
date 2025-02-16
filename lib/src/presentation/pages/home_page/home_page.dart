@@ -16,9 +16,18 @@ class HomePage extends StatelessWidget {
           vertical: Spaces.xSmall,
         ),
         child: Column(
+          spacing: Spaces.medium,
           children: [
             NewsSection(),
-            Gaps.medium,
+            NewsSection(
+              title: 'News of the week',
+            ),
+            NewsSection(
+              title: 'Most liked news',
+            ),
+            NewsSection(
+              title: 'Just for you',
+            ),
             SafeArea(child: SizedBox()),
           ],
         ),
