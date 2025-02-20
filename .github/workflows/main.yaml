@@ -22,6 +22,14 @@ jobs:
           flutter-version: "3.27.1"
           channel: "stable"
 
+      - name: Cache Flutter Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.pub-cache
+          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            flutter-${{ runner.os }}-
+
       - name: Install Dependencies
         run: flutter pub get
 
@@ -36,17 +44,41 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Cache Java Dependencies (Gradle)
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
       - name: Set Up Java
         uses: actions/setup-java@v3.12.0
         with:
           distribution: "oracle"
           java-version: "17"
 
+      - name: Cache Flutter SDK
+        uses: actions/cache@v3
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            flutter-${{ runner.os }}-
+
       - name: Set Up Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.27.1"
           channel: "stable"
+
+      - name: Cache Flutter Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.pub-cache
+          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            flutter-${{ runner.os }}-
 
       - name: Install Dependencies
         run: flutter pub get
