@@ -32,6 +32,9 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
+      - name: Analyze Flutter Code
+        run: flutter analyze
+
       - name: Build APK
         run: flutter build apk --release
 
@@ -49,7 +52,6 @@ jobs:
           name: Releases
           path: |
             build/app/outputs/flutter-apk/app-release.apk
-            build/app/outputs/bundle/release/app-release.aab
             build/ios_build.tar.g
 
       - name: Extract version from pubspec.yaml
@@ -78,5 +80,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/app/outputs/bundle/release/app-release.aab,build/ios_build.tar.gz"
-          tag: v${{ env.run_number }}
+          tag: v${{ env.VERSION }}
           token: ${{ secrets.TOKEN }}
