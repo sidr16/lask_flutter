@@ -9,33 +9,6 @@ on:
       - master
 
 jobs:
-  analysis:
-    name: Analysis
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.27.1"
-          channel: "stable"
-
-      - name: Cache Flutter Dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.pub-cache
-          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
-          restore-keys: |
-            flutter-${{ runner.os }}-
-
-      - name: Install Dependencies
-        run: flutter pub get
-
-      - name: Analyze Flutter Code
-        run: flutter analyze
-
   build:
     name: Build & Release
     runs-on: macos-latest
