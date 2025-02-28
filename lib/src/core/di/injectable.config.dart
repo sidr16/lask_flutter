@@ -15,10 +15,10 @@ import 'package:lask_flutter/src/config/router/app_router.dart' as _i915;
 import 'package:lask_flutter/src/core/bloc/theme_mode_bloc/theme_mode_bloc.dart'
     as _i988;
 import 'package:lask_flutter/src/core/di/modules.dart' as _i239;
-import 'package:lask_flutter/src/data/data_sources/remote/news/news_api.dart'
-    as _i105;
-import 'package:lask_flutter/src/data/data_sources/remote/news/news_api_impl.dart'
-    as _i953;
+import 'package:lask_flutter/src/data/data_sources/remote/news/news_data_source.dart'
+    as _i457;
+import 'package:lask_flutter/src/data/data_sources/remote/news/news_data_source_impl.dart'
+    as _i986;
 import 'package:lask_flutter/src/data/repositories/news_repository_impl.dart'
     as _i701;
 import 'package:lask_flutter/src/domain/repositories/news_repository.dart'
@@ -49,13 +49,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i988.ThemeModeBloc>(() => _i988.ThemeModeBloc());
     gh.lazySingleton<_i915.AppRouter>(() => _i915.AppRouter());
-    gh.singleton<_i105.NewsApi>(() => _i953.NewsApiImpl());
+    gh.singleton<_i457.NewsDataSource>(() => _i986.NewsDataSourceImpl());
     gh.singleton<_i512.NewsRepository>(
-        () => _i701.NewsRepositoryImpl(gh<_i105.NewsApi>()));
-    gh.factory<_i775.CategoriesBloc>(
-        () => _i775.CategoriesBloc(gh<_i512.NewsRepository>()));
+        () => _i701.NewsRepositoryImpl(gh<_i457.NewsDataSource>()));
     gh.factory<_i587.GetNewsUseCase>(
         () => _i587.GetNewsUseCase(gh<_i512.NewsRepository>()));
+    gh.factory<_i775.CategoriesBloc>(
+        () => _i775.CategoriesBloc(gh<_i512.NewsRepository>()));
     gh.factory<_i454.NewsBloc>(
         () => _i454.NewsBloc(gh<_i587.GetNewsUseCase>()));
     return this;

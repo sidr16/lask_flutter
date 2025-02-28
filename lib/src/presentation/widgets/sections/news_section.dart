@@ -35,7 +35,7 @@ class _NewsSectionState extends State<NewsSection> {
           child: BlocBuilder<NewsBloc, NewsState>(
             builder: (context, state) {
               return state.when(
-                data: (data, isLoading) {
+                data: (data) {
                   return NewsListView.horizontal(
                     news: data,
                     onItemBuildIndex: _newsBloc.onLoadItemAtIndex,
@@ -43,6 +43,18 @@ class _NewsSectionState extends State<NewsSection> {
                 },
                 loading: NewsShimmerListView.horizontal,
                 error: ErrorWidget.new,
+                loadingWithData: (data) {
+                  return NewsListView.horizontal(
+                    news: data,
+                    onItemBuildIndex: _newsBloc.onLoadItemAtIndex,
+                  );
+                },
+                errorWithData: (data, error) {
+                  return NewsListView.horizontal(
+                    news: data,
+                    onItemBuildIndex: _newsBloc.onLoadItemAtIndex,
+                  );
+                },
               );
             },
           ),
