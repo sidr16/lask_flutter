@@ -122,23 +122,38 @@ class _BuildNewsListState extends State<_BuildNewsList>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    const isFirstLarge = true;
 
     return BlocProvider(
       create: (context) => newsBloc..initialize(widget.category),
       child: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
           return state.when(
-            data: (data, isLoading) {
+            data: (data) {
               return NewsListView(
                 news: data,
-                isFirstLarge: true,
+                isFirstLarge: isFirstLarge,
                 onItemBuildIndex: newsBloc.onLoadItemAtIndex,
               );
             },
             loading: () => const NewsShimmerListView(
-              isFirstLarge: true,
+              isFirstLarge: isFirstLarge,
             ),
             error: ErrorWidget.new,
+            loadingWithData: (data) {
+              return NewsListView(
+                news: data,
+                isFirstLarge: isFirstLarge,
+                onItemBuildIndex: newsBloc.onLoadItemAtIndex,
+              );
+            },
+            errorWithData: (data, error) {
+              return NewsListView(
+                news: data,
+                isFirstLarge: isFirstLarge,
+                onItemBuildIndex: newsBloc.onLoadItemAtIndex,
+              );
+            },
           );
         },
       ),
