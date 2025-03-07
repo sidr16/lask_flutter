@@ -143,15 +143,14 @@ class _BuildNewsListState extends State<_BuildNewsList>
             loadingWithData: (data) {
               return NewsListView(
                 news: data,
+                showShimmer: true,
                 isFirstLarge: isFirstLarge,
-                onItemBuildIndex: newsBloc.onLoadItemAtIndex,
               );
             },
             errorWithData: (data, error) {
               return NewsListView(
                 news: data,
                 isFirstLarge: isFirstLarge,
-                onItemBuildIndex: newsBloc.onLoadItemAtIndex,
               );
             },
           );

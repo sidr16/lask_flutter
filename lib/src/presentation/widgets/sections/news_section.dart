@@ -46,6 +46,7 @@ class _NewsSectionState extends State<NewsSection> {
                 loadingWithData: (data) {
                   return NewsListView.horizontal(
                     news: data,
+                    showShimmer: true,
                     onItemBuildIndex: _newsBloc.onLoadItemAtIndex,
                   );
                 },
